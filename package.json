@@ -1,0 +1,29 @@
+{
+  "name": "unit-testing-angularjs-app",
+  "version": "1.0.0",
+  "description": "Unit tests in AngularJS app",
+  "main": "js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "unit-test",
+    "angularjs",
+    "javascript",
+    "jasmine"
+  ],
+  "author": "Anton.Ratenko",
+  "license": "ISC",
+  "devDependencies": {
+    "angular-mocks": "^1.5.8",
+    "jasmine-core": "^2.4.1",
+    "karma": "^1.1.1",
+    "karma-coverage": "^1.1.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-ng-html2js-preprocessor": "^1.0.0",
+    "karma-phantomjs-launcher": "^1.0.1"
+  },
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}

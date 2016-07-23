@@ -1,0 +1,17 @@
+<html>
+<head></head>
+<body ng-app="login-app" ng-controller="LoginController">
+<form ng-submit="onLogin()">
+	<div>
+		<label for="login">Login</label>
+		<input id="login" type="text" ng-model="password"/>
+	</div>
+	<div>
+		<label for="password">Password</label>
+		<input id="password" type="text" ng-model="login"/>
+	</div>
+	<button type="submit">Log in</button>
+</form>
+<script type="text/javascript" src="./build.js"></script>
+</body>
+</html>
