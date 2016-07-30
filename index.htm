@@ -1,17 +1,21 @@
 <html>
 <head></head>
-<body ng-app="login-app" ng-controller="LoginController">
-<form ng-submit="onLogin()">
+<body ng-app="login-app" ng-controller="LoginController as vm">
+<form ng-submit="vm.onLogin()">
 	<div>
 		<label for="login">Login</label>
-		<input id="login" type="text" ng-model="password"/>
+		<input id="login" type="text" ng-model="vm.login"/>
 	</div>
 	<div>
 		<label for="password">Password</label>
-		<input id="password" type="text" ng-model="login"/>
+		<input id="password" type="text" ng-model="vm.password"/>
 	</div>
 	<button type="submit">Log in</button>
 </form>
-<script type="text/javascript" src="./build.js"></script>
+<script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="./js/app.js"></script>
+<script type="text/javascript" src="./js/user.service.js"></script>
+<script type="text/javascript" src="./js/login.directive.js"></script>
+<script type="text/javascript" src="./js/login.controller.js"></script>
 </body>
 </html>

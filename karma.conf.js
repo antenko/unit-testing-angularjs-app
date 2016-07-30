@@ -15,7 +15,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'js/*.js'
+      './bower_components/angular/angular.min.js',
+      './bower_components/angular-mocks/angular-mocks.js',
+      './js/**/*.js'
     ],
 
 
@@ -28,7 +30,6 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
     },
-
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -50,7 +51,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // start these browsers
