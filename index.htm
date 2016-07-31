@@ -1,17 +1,11 @@
 <html>
-<head></head>
+<head>
+	<link rel="stylesheet" type="text/css" href="./css/styles.css"/>
+</head>
 <body ng-app="login-app" ng-controller="LoginController as vm">
-<form ng-submit="vm.onLogin()">
-	<div>
-		<label for="login">Login</label>
-		<input id="login" type="text" ng-model="vm.login"/>
-	</div>
-	<div>
-		<label for="password">Password</label>
-		<input id="password" type="text" ng-model="vm.password"/>
-	</div>
-	<button type="submit">Log in</button>
-</form>
+
+<login-form login-form on-login="vm.onLogin()" error="vm.authError"></login-form>
+
 <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
 <script type="text/javascript" src="./js/app.js"></script>
 <script type="text/javascript" src="./js/user.service.js"></script>

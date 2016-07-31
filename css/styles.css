@@ -1,0 +1,30 @@
+.login-form {
+	width: 100%;
+	max-width: 400px;
+	margin: 20px auto;
+}
+
+.label {
+	display: block;
+	margin-top: 10px;
+}
+
+.label:after {
+	content: ':';
+}
+
+.input {
+	width: 100%;
+	padding: 10px;
+	font-size: 14px;
+}
+
+.btn {
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
+}
+
+.error-btn {
+	background: #ff0000;
+}

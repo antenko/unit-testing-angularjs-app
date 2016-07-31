@@ -1,5 +1,6 @@
 describe('Login Controller', function () {
 	var $scope,
+		$timeout,
 		ctrl,
 		UserService,
 		loginDefer;
@@ -7,30 +8,49 @@ describe('Login Controller', function () {
 	beforeEach(module('login-app'));
 	beforeEach(module('user-service-mock'));
 
-	beforeEach(inject(['$controller', '$rootScope', '$q', 'UserService', function ($controller, $rootScope, $q, _UserService_) {
+	beforeEach(inject(['$controller', '$rootScope', '$q', '$timeout', 'UserService', function ($controller, $rootScope, $q, _$timeout_, _UserService_) {
+		$timeout = _$timeout_;
 		UserService = _UserService_;
 
 		loginDefer = $q.defer();
 		UserService.login.and.returnValue(loginDefer.promise);
 
 		$scope = $rootScope.$new();
-		ctrl = $controller('LoginController', {$scope: $scope})
+		ctrl = $controller('LoginController', {$scope: $scope});
 	}]));
+
+	it('should have empty properties after initialization', function () {
+		expect(ctrl.login).toBe('');
+		expect(ctrl.password).toBe('');
+		expect(ctrl.user).toBe(null);
+		expect(ctrl.authError).toBe(null);
+	});
 
 	describe('Login method', function () {
 		it('should exist', function () {
-			expect(ctrl.onLogin).toBeDefined();
+			expect(angular.isFunction(ctrl.onLogin)).toBe(true);
 		});
 
 		it('should call user service', function () {
 			ctrl.onLogin();
+
 			expect(UserService.login).toHaveBeenCalled();
+			expect(UserService.login.calls.count()).toBe(1);
 		});
 
 		it('should call user service with correct params', function () {
 			ctrl.login = 'myLogin';
 			ctrl.password = 'myPassword';
 			ctrl.onLogin();
+
+			expect(UserService.login).toHaveBeenCalledWith(ctrl.login, ctrl.password);
+		});
+
+		it('should call user service with correct params 2', function () {
+			ctrl.login = 'myLogin2';
+			ctrl.password = 'myPassword2';
+			ctrl.onLogin();
+
 			expect(UserService.login).toHaveBeenCalledWith(ctrl.login, ctrl.password);
 		});
 
@@ -62,6 +82,18 @@ describe('Login Controller', function () {
 			$scope.$apply();
 
 			expect(ctrl.authError).toEqual('Error #123: My error');
+		});
+
+		it('should clear auth error property after 5s timeout', function () {
+			ctrl.onLogin();
+			loginDefer.reject({code: 123, message: 'My error'});
+			$scope.$apply();
+
+			expect(ctrl.authError).toBeTruthy();
+
+			$timeout.flush();
+			expect(ctrl.authError).toBe(null);
+			$timeout.verifyNoPendingTasks();
 		});
 
 		it('should set user data after auth event', function () {

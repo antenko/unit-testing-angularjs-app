@@ -1,4 +1,4 @@
-angular.module('login-app').controller('LoginController', ['$scope', '$rootScope', 'UserService', function ($scope, $rootScope, UserService) {
+angular.module('login-app').controller('LoginController', ['$scope', '$rootScope', '$timeout', 'UserService', function ($scope, $rootScope, $timeout, UserService) {
 	var vm = this;
 	vm.login = '';
 	vm.password = '';
@@ -16,6 +16,9 @@ angular.module('login-app').controller('LoginController', ['$scope', '$rootScope
 			$scope.$emit('user.auth.success', userData);
 		}, function (error) {
 			vm.authError = 'Error #' + error.code + ': ' + error.message;
+			$timeout(function () {
+				vm.authError = null;
+			}, 5000);
 		});
 	};
 }]);
