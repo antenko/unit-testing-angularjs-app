@@ -1,7 +1,18 @@
-.login-form {
-	width: 100%;
+body {
+	font-family: Arial, serif;
+}
+
+.wrap {
 	max-width: 400px;
 	margin: 20px auto;
+}
+
+.greeting {
+	font-size: 18px;
+}
+
+.login-form {
+	width: 100%;
 }
 
 .label {
@@ -27,4 +38,5 @@
 
 .error-btn {
 	background: #ff0000;
+	color: #fff;
 }

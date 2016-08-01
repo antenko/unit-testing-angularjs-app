@@ -1,9 +1,10 @@
-angular.module('login-app').controller('LoginController', ['$scope', '$rootScope', '$timeout', 'UserService', function ($scope, $rootScope, $timeout, UserService) {
+angular.module('login-app').controller('LoginController', ['$scope', '$rootScope', '$timeout', 'UserService', 'HelloGoodDay', function ($scope, $rootScope, $timeout, UserService, HelloGoodDay) {
 	var vm = this;
 	vm.login = '';
 	vm.password = '';
 	vm.user = null;
 	vm.authError = null;
+	vm.greeting = HelloGoodDay.getInvitation();
 
 	$scope.$on('user.auth.success', function (event, userData) {
 		vm.user = userData;
