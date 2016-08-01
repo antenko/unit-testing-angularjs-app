@@ -4,6 +4,8 @@ angular.module('login-app').directive('loginForm', [function () {
 		templateUrl: 'templates/login-form.htm',
 		replace: true,
 		scope: {
+			login: '=',
+			password: '=',
 			onLogin: '&',
 			error: '='
 		},
