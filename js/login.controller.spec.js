@@ -3,14 +3,18 @@ describe('Login Controller', function () {
 		$timeout,
 		ctrl,
 		UserService,
+		HelloGoodDay,
 		loginDefer;
 
 	beforeEach(module('login-app'));
 	beforeEach(module('user-service-mock'));
+	beforeEach(module('hello-good-day-provider-mock'));
 
-	beforeEach(inject(['$controller', '$rootScope', '$q', '$timeout', 'UserService', function ($controller, $rootScope, $q, _$timeout_, _UserService_) {
+	beforeEach(inject(['$controller', '$rootScope', '$q', '$timeout', 'UserService', 'HelloGoodDay', function ($controller, $rootScope, $q, _$timeout_, _UserService_, _HelloGoodDay_) {
 		$timeout = _$timeout_;
 		UserService = _UserService_;
+		HelloGoodDay = _HelloGoodDay_;
+		HelloGoodDay.getInvitation.and.returnValue('MyGreeting!');
 
 		loginDefer = $q.defer();
 		UserService.login.and.returnValue(loginDefer.promise);
@@ -24,6 +28,11 @@ describe('Login Controller', function () {
 		expect(ctrl.password).toBe('');
 		expect(ctrl.user).toBe(null);
 		expect(ctrl.authError).toBe(null);
+	});
+
+	it('should have correct greeting', function () {
+		expect(HelloGoodDay.getInvitation).toHaveBeenCalled();
+		expect(ctrl.greeting).toBe('MyGreeting!');
 	});
 
 	describe('Login method', function () {
