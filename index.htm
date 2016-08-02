@@ -4,7 +4,7 @@
 </head>
 <body ng-app="login-app" ng-controller="LoginController as vm">
 <div class="wrap">
-	<h2 class="greeting" ng-bind="vm.greeting"></h2>
+	<h2 class="invitation" ng-bind="vm.invitation"></h2>
 	<login-form login="vm.login" password="vm.password" on-login="vm.onLogin()" error="vm.authError"></login-form>
 </div>
 
@@ -13,6 +13,6 @@
 <script type="text/javascript" src="./js/user.service.js"></script>
 <script type="text/javascript" src="./js/login.directive.js"></script>
 <script type="text/javascript" src="./js/login.controller.js"></script>
-<script type="text/javascript" src="./js/helloGoodDay.provider.js"></script>
+<script type="text/javascript" src="js/inviteUser.provider.js"></script>
 </body>
 </html>

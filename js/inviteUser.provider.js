@@ -1,5 +1,5 @@
 angular.module('login-app')
-	.provider('HelloGoodDay', function () {
+	.provider('InviteUser', function () {
 		var name;
 		return {
 			configure: function (value) {
@@ -8,6 +8,7 @@ angular.module('login-app')
 			$get: function () {
 				return {
 					getInvitation: function () {
+						name = name || 'guest'
 						return 'Hello my Dear ' + name + '! Log in, please.';
 					}
 				};

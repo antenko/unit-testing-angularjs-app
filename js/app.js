@@ -1,6 +1,6 @@
 angular.module('login-app', [])
-	.config(['HelloGoodDayProvider', function(HelloGoodDayProvider) {
+	.config(['InviteUserProvider', function(InviteUserProvider) {
 		var names = ['friend', 'visitor'];
 		var randomNameIndex = Math.floor(Math.random() * names.length);
-		HelloGoodDayProvider.configure(names[randomNameIndex]);
+		InviteUserProvider.configure(names[randomNameIndex]);
 	}]);
