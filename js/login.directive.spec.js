@@ -1,4 +1,4 @@
-describe('Login Directive', function () {
+describe('Directive: loginForm', function () {
 	var scope,
 		el;
 	beforeEach(module('login-app'));

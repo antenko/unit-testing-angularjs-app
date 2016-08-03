@@ -1,23 +1,23 @@
-describe('Login Controller', function () {
+describe('Controller: LoginController', function () {
 	var $scope,
 		$timeout,
 		ctrl,
-		UserService,
-		InviteUser,
+		userService,
+		inviteUser,
 		loginDefer;
 
 	beforeEach(module('login-app'));
 	beforeEach(module('user-service-mock'));
-	beforeEach(module('hello-good-day-provider-mock'));
+	beforeEach(module('invite-user-provider-mock'));
 
-	beforeEach(inject(['$controller', '$rootScope', '$q', '$timeout', 'UserService', 'InviteUser', function ($controller, $rootScope, $q, _$timeout_, _UserService_, _InviteUser_) {
+	beforeEach(inject(['$controller', '$rootScope', '$q', '$timeout', 'userService', 'inviteUser', function ($controller, $rootScope, $q, _$timeout_, _userService_, _inviteUser_) {
 		$timeout = _$timeout_;
-		UserService = _UserService_;
-		InviteUser = _InviteUser_;
-		InviteUser.getInvitation.and.returnValue('MyInvitation!');
+		userService = _userService_;
+		inviteUser = _inviteUser_;
+		inviteUser.getInvitation.and.returnValue('MyInvitation!');
 
 		loginDefer = $q.defer();
-		UserService.login.and.returnValue(loginDefer.promise);
+		userService.login.and.returnValue(loginDefer.promise);
 
 		$scope = $rootScope.$new();
 		ctrl = $controller('LoginController', {$scope: $scope});
@@ -31,11 +31,11 @@ describe('Login Controller', function () {
 	});
 
 	it('should have correct invitation', function () {
-		expect(InviteUser.getInvitation).toHaveBeenCalled();
+		expect(inviteUser.getInvitation).toHaveBeenCalled();
 		expect(ctrl.invitation).toBe('MyInvitation!');
 	});
 
-	describe('Login method', function () {
+	describe('Method: login', function () {
 		it('should exist', function () {
 			expect(angular.isFunction(ctrl.onLogin)).toBe(true);
 		});
@@ -43,8 +43,8 @@ describe('Login Controller', function () {
 		it('should call user service', function () {
 			ctrl.onLogin();
 
-			expect(UserService.login).toHaveBeenCalled();
-			expect(UserService.login.calls.count()).toBe(1);
+			expect(userService.login).toHaveBeenCalled();
+			expect(userService.login.calls.count()).toBe(1);
 		});
 
 		it('should call user service with correct params', function () {
@@ -52,7 +52,7 @@ describe('Login Controller', function () {
 			ctrl.password = 'myPassword';
 			ctrl.onLogin();
 
-			expect(UserService.login).toHaveBeenCalledWith(ctrl.login, ctrl.password);
+			expect(userService.login).toHaveBeenCalledWith(ctrl.login, ctrl.password);
 		});
 
 		it('should call user service with correct params 2', function () {
@@ -60,7 +60,7 @@ describe('Login Controller', function () {
 			ctrl.password = 'myPassword2';
 			ctrl.onLogin();
 
-			expect(UserService.login).toHaveBeenCalledWith(ctrl.login, ctrl.password);
+			expect(userService.login).toHaveBeenCalledWith(ctrl.login, ctrl.password);
 		});
 
 		it('should clear form after positive promise resolve', function () {

@@ -1,4 +1,4 @@
-angular.module('login-app').factory('UserService', ['$http', '$q', function ($http, $q) {
+angular.module('login-app').factory('userService', ['$http', '$q', function ($http, $q) {
 	function login(login, password) {
 		return $http.post('users/login', {
 			login: login,
