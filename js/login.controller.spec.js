@@ -10,29 +10,33 @@ describe('Controller: LoginController', function () {
 	beforeEach(module('user-service-mock'));
 	beforeEach(module('invite-user-provider-mock'));
 
-	beforeEach(inject(['$controller', '$rootScope', '$q', '$timeout', 'userService', 'inviteUser', function ($controller, $rootScope, $q, _$timeout_, _userService_, _inviteUser_) {
+	beforeEach(inject(['$q', '$timeout', 'userService', 'inviteUser', function ($q, _$timeout_, _userService_, _inviteUser_) {
 		$timeout = _$timeout_;
-		userService = _userService_;
 		inviteUser = _inviteUser_;
 		inviteUser.getInvitation.and.returnValue('MyInvitation!');
 
 		loginDefer = $q.defer();
+		userService = _userService_;
 		userService.login.and.returnValue(loginDefer.promise);
+	}]));
 
+	beforeEach(inject(['$controller', '$rootScope', function ($controller, $rootScope) {
 		$scope = $rootScope.$new();
 		ctrl = $controller('LoginController', {$scope: $scope});
 	}]));
 
-	it('should have empty properties after initialization', function () {
-		expect(ctrl.login).toBe('');
-		expect(ctrl.password).toBe('');
-		expect(ctrl.user).toBe(null);
-		expect(ctrl.authError).toBe(null);
-	});
+	describe('State', function () {
+		it('should have empty properties after initialization', function () {
+			expect(ctrl.login).toBe('');
+			expect(ctrl.password).toBe('');
+			expect(ctrl.user).toBe(null);
+			expect(ctrl.authError).toBe(null);
+		});
 
-	it('should have correct invitation', function () {
-		expect(inviteUser.getInvitation).toHaveBeenCalled();
-		expect(ctrl.invitation).toBe('MyInvitation!');
+		it('should have correct invitation', function () {
+			expect(inviteUser.getInvitation).toHaveBeenCalled();
+			expect(ctrl.invitation).toBe('MyInvitation!');
+		});
 	});
 
 	describe('Method: login', function () {

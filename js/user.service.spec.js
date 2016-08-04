@@ -1,4 +1,4 @@
-describe('Factory: userService', function () {
+describe('Service: userService', function () {
 	var userService,
 		$httpBackend;
 
