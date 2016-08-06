@@ -4,8 +4,7 @@
   "description": "Unit tests in AngularJS app",
   "main": "js/app.js",
   "scripts": {
-    "test": "karma start",
-    "test:watch": "karma start --no-single-run --auto-watch"
+    "test": "karma start"
   },
   "keywords": [
     "unit-test",
@@ -13,8 +12,8 @@
     "javascript",
     "jasmine"
   ],
-  "author": "Anton.Ratenko",
-  "license": "ISC",
+  "author": "Anton.Ratenko <ratenko.a@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "jasmine-core": "^2.4.1",
     "karma": "^1.1.1",
